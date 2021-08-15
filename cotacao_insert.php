@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include("Connections/conexao.php");
 
@@ -13,14 +12,16 @@ $modelo = mysqli_real_escape_string($conexao, $_POST['modelo']);
 
 $usuid = $_SESSION['usuario']; 
 
-if (!isset($_POST['idcliente'])) {
-    $_SESSION['msg_erro_cotacao'] = "Escolha um Cliente!";
+if (empty($_POST['idcliente'])) {
+    $_SESSION['msg_erro_cotacao'] = "Escolha um Cliente Existente!";
     header('Location: nova_cotacao.php');
+    exit;
 }
 
 if($tipo == "ND"){
     $_SESSION['cotacao_escolhe'] = "Por favor, Escolha um tipo!";
     header('Location: nova_cotacao.php');
+    exit;
 }else{
 
 $sql = "INSERT INTO tbcotacao (idcotacao, idcliente, favorecido, tipo, usuid, data_inc, defeito, produto, modelo) VALUES ('$idcotacao', '$idcliente','$favorecido' , '$tipo', '$usuid', NOW(), '$defeito', '$produto', '$modelo') ";

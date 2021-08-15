@@ -32,7 +32,8 @@ $finalizadas = mysqli_query($conexao, $sql2);
 
 ?>
 <!doctype html>
-<html class="has-tab-navigation header-dark boxed" data-style-switcher-options="{'headerColor': 'dark', 'backgroundColor': 'dark', 'headerColor': 'dark', 'changeLogo': false, 'layoutStyle': 'boxed'}">
+<html class="has-tab-navigation header-dark boxed"
+    data-style-switcher-options="{'headerColor': 'dark', 'backgroundColor': 'dark', 'headerColor': 'dark', 'changeLogo': false, 'layoutStyle': 'boxed'}">
 
 <!-- Mirrored from preview.oklerthemes.com/porto-admin/2.1.1/ui-elements-cards.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Jun 2018 18:57:16 GMT -->
 
@@ -46,7 +47,8 @@ $finalizadas = mysqli_query($conexao, $sql2);
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- Web Fonts  -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light"
+        rel="stylesheet" type="text/css">
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="vendor/animate/animate.css">
@@ -89,7 +91,8 @@ $finalizadas = mysqli_query($conexao, $sql2);
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="col">
-                                <a class="btn btn-success text-white mb-2" href="nova_cotacao.php" style="border:none;"><i class="fas fa-plus"></i> Nova OS</a>
+                                <a class="btn btn-success text-white mb-2" href="nova_cotacao.php"
+                                    style="border:none;"><i class="fas fa-plus"></i> Nova OS</a>
                             </div>
                         </div>
                     </div>
@@ -99,55 +102,63 @@ $finalizadas = mysqli_query($conexao, $sql2);
                 <div class="row">
                     <div class="col-xl-12 order-1 mb-4">
                         <section class="card">
-                            
+
                             <div class="col-lg-12">
-							    <div class="tabs">
+                                <div class="tabs">
                                     <ul class="nav nav-tabs">
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="#aberto" data-toggle="tab"><i class="far fa-folder-open"></i> Abertas</a>
+                                            <a class="nav-link" href="#aberto" data-toggle="tab"><i
+                                                    class="far fa-folder-open"></i> Abertas</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#finalizadas" data-toggle="tab"><i class="fas fa-check-circle"></i> Finalizadas</a>
+                                            <a class="nav-link" href="#finalizadas" data-toggle="tab"><i
+                                                    class="fas fa-check-circle"></i> Finalizadas</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content">
                                         <div id="aberto" class="tab-pane active">
-                                        <header class="card-header card-header-primary">
-                                            <h2 class="card-title">Últimas OS</h2>
-                                        </header>
-                                        <div class="card-body">
-                                            <div id="foo" data-appear-animation="fadeOut" data-appear-animation-delay="4000">
-                                                <div class="col-lg-12">
-                                                    <div class="center" >
-                                                        <?php
+                                            <header class="card-header card-header-primary">
+                                                <h2 class="card-title">Últimas OS</h2>
+                                            </header>
+                                            <div class="card-body">
+                                                <div id="foo" data-appear-animation="fadeOut"
+                                                    data-appear-animation-delay="4000">
+                                                    <div class="col-lg-12">
+                                                        <div class="center">
+                                                            <?php
                                                         if (isset($_SESSION['status_cotacao'])) :
                                                         ?>
                                                             <div class="alert alert-success">
-                                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                                <strong>Sucesso! <?php echo $_SESSION['status_cotacao'] ?> </strong><br>
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                    aria-hidden="true">×</button>
+                                                                <strong>Sucesso!
+                                                                    <?php echo $_SESSION['status_cotacao'] ?>
+                                                                </strong><br>
                                                             </div>
-                                                        <?php
+                                                            <?php
                                                         endif;
                                                         unset($_SESSION['status_cotacao']);
                                                         ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="center">
-                                                        <?php
+                                                    <div class="col-lg-12">
+                                                        <div class="center">
+                                                            <?php
                                                         if (isset($_SESSION['msg_erro_cotacao'])) :
                                                         ?>
                                                             <div class="alert alert-danger">
-                                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                                <strong>Atenção! <?php echo $_SESSION['msg_erro_cotacao'] ?></strong>
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                    aria-hidden="true">×</button>
+                                                                <strong>Atenção!
+                                                                    <?php echo $_SESSION['msg_erro_cotacao'] ?></strong>
                                                             </div>
-                                                        <?php
+                                                            <?php
                                                         endif;
                                                         unset($_SESSION['msg_erro_cotacao']);
                                                         ?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <table class="table table-responsive-md table-striped mb-0">
                                                     <thead>
                                                         <tr>
@@ -161,34 +172,46 @@ $finalizadas = mysqli_query($conexao, $sql2);
                                                     </thead>
                                                     <tbody>
                                                         <?php while ($rows_rspedidos = mysqli_fetch_array($result)) { ?>
-                                                            <tr style="font-size:14px;">
-                                                                <td><?php echo $rows_rspedidos['idcotacao']; ?></td>
-                                                                <td><?php echo mb_strtoupper($rows_rspedidos['favorecido']) ?></td>
-                                                                <td>
-                                                                    <?php if ($rows_rspedidos['status'] == 'A') { ?>
-                                                                        <span class="badge badge-info">Aberto</span>
-                                                                    <?php } ?>
-                                                                    <?php if ($rows_rspedidos['status'] == 'F') { ?>
-                                                                        <span class="badge badge-success">Finalizado</span>
-                                                                    <?php } ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php if ($rows_rspedidos['tipo'] == 'CT') { ?>
-                                                                        COTAÇÃO
-                                                                    <?php }elseif($rows_rspedidos['tipo'] == 'L'){ ?>
-                                                                        OS
-                                                                    <?php } ?>
-                                                                </td>
-                                                                <td><?php echo $rows_rspedidos['data'] ?></td>
-                                                                <td class="actions-hover actions-fade text-center">
-                                                                    <?php if ($rows_rspedidos['tipo'] == 'CT') { ?>
-                                                                        <a class="btn btn-dark text-white" title="Abrir Cotação" href="cotacao_preco_item.php?idcotacao=<?php echo $rows_rspedidos['idcotacao'] ?>"><i class="fas fa-file-alt"></i></a>
-                                                                    <?php }elseif($rows_rspedidos['tipo'] == 'L'){ ?>
-                                                                        <a class="btn btn-dark text-white" title="Abrir Cotação" href="cotacao_licitacao_preco_item.php?idcotacao=<?php echo $rows_rspedidos['idcotacao'] ?>"><i class="fas fa-file-alt"></i></a>
-                                                                    <?php } ?>
-                                                                        <a class="btn btn-danger text-white text-center" title="Excluir" href="cotacao_excluir.php?idcotacao=<?php echo $rows_rspedidos['idcotacao'] ?>"><i class="fas fa-times-circle"></i></a>
-                                                                </td>
-                                                            </tr>
+                                                        <tr style="font-size:14px;">
+                                                            <td><?php echo $rows_rspedidos['idcotacao']; ?></td>
+                                                            <td><?php echo mb_strtoupper($rows_rspedidos['favorecido']) ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php if ($rows_rspedidos['status'] == 'A') { ?>
+                                                                <span class="badge badge-info">Aberto</span>
+                                                                <?php } ?>
+                                                                <?php if ($rows_rspedidos['status'] == 'F') { ?>
+                                                                <span class="badge badge-success">Finalizado</span>
+                                                                <?php } ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php if ($rows_rspedidos['tipo'] == 'CT') { ?>
+                                                                COTAÇÃO
+                                                                <?php }elseif($rows_rspedidos['tipo'] == 'L'){ ?>
+                                                                OS
+                                                                <?php } ?>
+                                                            </td>
+                                                            <td><?php echo $rows_rspedidos['data'] ?></td>
+                                                            <td class="actions-hover actions-fade text-center">
+                                                                <?php if ($rows_rspedidos['tipo'] == 'CT') { ?>
+                                                                <a class="btn btn-dark text-white" title="Abrir Cotação"
+                                                                    href="cotacao_preco_item.php?idcotacao=<?php echo $rows_rspedidos['idcotacao'] ?>"><i
+                                                                        class="fas fa-file-alt"></i></a>
+                                                                <?php }elseif($rows_rspedidos['tipo'] == 'L'){ ?>
+                                                                <a class="btn btn-dark text-white" title="Abrir OS"
+                                                                    href="cotacao_licitacao_preco_item.php?idcotacao=<?php echo $rows_rspedidos['idcotacao'] ?>"><i
+                                                                        class="fas fa-file-alt"></i></a>
+                                                                <?php } ?>
+                                                                <a href="cotacao_close.php?idcotacao=<?php echo $rows_rspedidos['idcotacao'] ?>"
+                                                                    class="btn btn-success text-white text-center" title="Finalizar OS"
+                                                                    style="border:none;"> <i
+                                                                        class="fas fa-check-circle"></i></a>
+                                                                <a class="btn btn-danger text-white text-center"
+                                                                    title="Excluir"
+                                                                    href="cotacao_excluir.php?idcotacao=<?php echo $rows_rspedidos['idcotacao'] ?>"><i
+                                                                        class="fas fa-times-circle"></i></a>
+                                                            </td>
+                                                        </tr>
                                                         <?php  }
                                                         ?>
                                                     </tbody>
@@ -201,53 +224,62 @@ $finalizadas = mysqli_query($conexao, $sql2);
                                                         </li>
                                                         <?php
                                                         for ($i = 1; $i <= $totalPagina; $i++) { ?>
-                                                            <li class="page-item"><a class="page-link" href="?pagina=<?php echo $i ?>#aberto"><?php echo $i ?></a></li>
+                                                        <li class="page-item"><a class="page-link"
+                                                                href="?pagina=<?php echo $i ?>#aberto"><?php echo $i ?></a>
+                                                        </li>
                                                         <?php } ?>
-                                                        <a class="page-link" href="?pagina=<?php echo $totalPagina ?>#aberto">Última</a>
+                                                        <a class="page-link"
+                                                            href="?pagina=<?php echo $totalPagina ?>#aberto">Última</a>
                                                         </li>
                                                     </ul>
                                                 </nav>
-                                            </div>									
+                                            </div>
                                         </div>
                                         <div id="finalizadas" class="tab-pane">
-                                                <div class="card-body">
-                                        <div id="foo" data-appear-animation="fadeOut" data-appear-animation-delay="4000">
-                                            <div class="col-lg-12">
-                                                <div class="center" >
-                                                    <?php
+                                            <div class="card-body">
+                                                <div id="foo" data-appear-animation="fadeOut"
+                                                    data-appear-animation-delay="4000">
+                                                    <div class="col-lg-12">
+                                                        <div class="center">
+                                                            <?php
                                                     if (isset($_SESSION['status_cotacao'])) :
                                                     ?>
-                                                        <div class="alert alert-success">
-                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                            <strong>Sucesso! <?php echo $_SESSION['status_cotacao'] ?> </strong><br>
-                                                        </div>
-                                                    <?php
+                                                            <div class="alert alert-success">
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                    aria-hidden="true">×</button>
+                                                                <strong>Sucesso!
+                                                                    <?php echo $_SESSION['status_cotacao'] ?>
+                                                                </strong><br>
+                                                            </div>
+                                                            <?php
                                                     endif;
                                                     unset($_SESSION['status_cotacao']);
                                                     ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="center">
-                                                    <?php
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="center">
+                                                            <?php
                                                     if (isset($_SESSION['msg_erro_cotacao'])) :
                                                     ?>
-                                                        <div class="alert alert-danger">
-                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                            <strong>Atenção! <?php echo $_SESSION['msg_erro_cotacao'] ?></strong>
-                                                        </div>
-                                                    <?php
+                                                            <div class="alert alert-danger">
+                                                                <button type="button" class="close" data-dismiss="alert"
+                                                                    aria-hidden="true">×</button>
+                                                                <strong>Atenção!
+                                                                    <?php echo $_SESSION['msg_erro_cotacao'] ?></strong>
+                                                            </div>
+                                                            <?php
                                                     endif;
                                                     unset($_SESSION['msg_erro_cotacao']);
                                                     ?>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                         </div>
-                                                
+
                                                 <table class="table table-responsive-md table-striped mb-0">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID Cotação</th>
+                                                            <th>OS</th>
                                                             <th>Favorecido</th>
                                                             <th>Status</th>
                                                             <th>Tipo</th>
@@ -257,35 +289,48 @@ $finalizadas = mysqli_query($conexao, $sql2);
                                                     </thead>
                                                     <tbody>
                                                         <?php while ($rows_rsfinalizado = mysqli_fetch_array($finalizadas)) { ?>
-                                                            <tr style="font-size:14px;">
-                                                                <td><?php echo $rows_rsfinalizado['idcotacao']; ?></td>
-                                                                <td><?php echo mb_strtoupper($rows_rsfinalizado['favorecido']) ?></td>
-                                                                <td>
-                                                                    <?php if ($rows_rsfinalizado['status'] == 'A') { ?>
-                                                                        <span class="badge badge-info">Aberto</span>
-                                                                    <?php } ?>
-                                                                    <?php if ($rows_rsfinalizado['status'] == 'F') { ?>
-                                                                        <span class="badge badge-success">Finalizado</span>
-                                                                    <?php } ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php if ($rows_rsfinalizado['tipo'] == 'CT') { ?>
-                                                                        COTAÇÃO
-                                                                    <?php }else{ ?>
-                                                                        LICITAÇÃO
-                                                                    <?php } ?>
-                                                                </td>
-                                                                <td><?php echo $rows_rsfinalizado['data'] ?></td>
-                                                                <td class="actions-hover actions-fade text-center">
-                                                                    <?php if ($rows_rsfinalizado['tipo'] == 'CT') { ?>
-                                                                            <a class="btn btn-dark text-white" title="Editar Cotação" href="cotacao_preco_item_edita.php?idcotacao=<?php echo $rows_rsfinalizado['idcotacao'] ?>"><i class="far fa-edit"></i></a>
-                                                                        <?php }elseif($rows_rsfinalizado['tipo'] == "L"){ ?>
-                                                                            <a class="btn btn-dark text-white" title="Editar Cotação" href="cotacao_preco_item_edita.php?idcotacao=<?php echo $rows_rsfinalizado['idcotacao'] ?>"><i class="far fa-edit"></i></a>
-                                                                        <?php } ?>   
-                                                                            <a class="btn btn-default text-dark text-center" title="Imprimir" href="cotacao_finaliza.php?idcotacao=<?php echo $rows_rsfinalizado['idcotacao'] ?>"><i class="fas fa-print"></i></a>
-                                                                            <a class="btn btn-danger text-white text-center" title="Cancelar" href="cotacao_cancelar.php?idcotacao=<?php echo $rows_rsfinalizado['idcotacao'] ?>"><i class="fas fa-times-circle"></i></a>
-                                                                </td>
-                                                            </tr>
+                                                        <tr style="font-size:14px;">
+                                                            <td><?php echo $rows_rsfinalizado['idcotacao']; ?></td>
+                                                            <td><?php echo mb_strtoupper($rows_rsfinalizado['favorecido']) ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php if ($rows_rsfinalizado['status'] == 'A') { ?>
+                                                                <span class="badge badge-info">Aberto</span>
+                                                                <?php } ?>
+                                                                <?php if ($rows_rsfinalizado['status'] == 'F') { ?>
+                                                                <span class="badge badge-success">Finalizado</span>
+                                                                <?php } ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php if ($rows_rsfinalizado['tipo'] == 'CT') { ?>
+                                                                COTAÇÃO
+                                                                <?php }else{ ?>
+                                                                OS
+                                                                <?php } ?>
+                                                            </td>
+                                                            <td><?php echo $rows_rsfinalizado['data'] ?></td>
+                                                            <td class="actions-hover actions-fade text-center">
+                                                                <?php if ($rows_rsfinalizado['tipo'] == 'CT') { ?>
+                                                                <a class="btn btn-dark text-white"
+                                                                    title="Editar Cotação"
+                                                                    href="cotacao_preco_item_edita.php?idcotacao=<?php echo $rows_rsfinalizado['idcotacao'] ?>"><i
+                                                                        class="far fa-edit"></i></a>
+                                                                <?php }elseif($rows_rsfinalizado['tipo'] == "L"){ ?>
+                                                                <a class="btn btn-dark text-white"
+                                                                    title="Editar Cotação"
+                                                                    href="cotacao_licitacao_preco_item.php?idcotacao=<?php echo $rows_rsfinalizado['idcotacao'] ?>"><i
+                                                                        class="far fa-edit"></i></a>
+                                                                <?php } ?>
+                                                                <a class="btn btn-default text-dark text-center"
+                                                                    title="Imprimir"
+                                                                    href="cotacao_finaliza.php?idcotacao=<?php echo $rows_rsfinalizado['idcotacao'] ?>"><i
+                                                                        class="fas fa-print"></i></a>
+                                                                <a class="btn btn-danger text-white text-center"
+                                                                    title="Cancelar"
+                                                                    href="cotacao_cancelar.php?idcotacao=<?php echo $rows_rsfinalizado['idcotacao'] ?>"><i
+                                                                        class="fas fa-times-circle"></i></a>
+                                                            </td>
+                                                        </tr>
                                                         <?php  }
                                                         ?>
                                                     </tbody>
@@ -294,22 +339,26 @@ $finalizadas = mysqli_query($conexao, $sql2);
                                                 <nav aria-label="Page navigation example">
                                                     <ul class="pagination justify-content-end">
                                                         <li class="page-item">
-                                                            <a class="page-link" href="?pagina2=1#finalizadas">Primeira</a>
+                                                            <a class="page-link"
+                                                                href="?pagina2=1#finalizadas">Primeira</a>
                                                         </li>
                                                         <?php
                                                         for ($i = 1; $i <= $totalPaginafinalizado; $i++) { ?>
-                                                            <li class="page-item"><a class="page-link" href="?pagina2=<?php echo $i ?>#finalizadas"><?php echo $i ?></a></li>
+                                                        <li class="page-item"><a class="page-link"
+                                                                href="?pagina2=<?php echo $i ?>#finalizadas"><?php echo $i ?></a>
+                                                        </li>
                                                         <?php } ?>
-                                                        <a class="page-link" href="?pagina2=<?php echo $totalPaginafinalizado ?>#finalizadas">Última</a>
+                                                        <a class="page-link"
+                                                            href="?pagina2=<?php echo $totalPaginafinalizado ?>#finalizadas">Última</a>
                                                         </li>
                                                     </ul>
                                                 </nav>
-                                            </div>	         
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </section>
                     </div>
                 </div>
@@ -352,12 +401,12 @@ $finalizadas = mysqli_query($conexao, $sql2);
 <script src="js/examples/examples.modals.js"></script>
 
 <script>
-    // Iniciará quando todo o corpo do documento HTML estiver pronto.
-        $().ready(function() {
-            setTimeout(function () {
-                $('#foo').hide(); // "foo" é o id do elemento que seja manipular.
-            }, 7500); // O valor é representado em milisegundos.
-        });
+// Iniciará quando todo o corpo do documento HTML estiver pronto.
+$().ready(function() {
+    setTimeout(function() {
+        $('#foo').hide(); // "foo" é o id do elemento que seja manipular.
+    }, 7500); // O valor é representado em milisegundos.
+});
 </script>
 
 </body>

@@ -349,7 +349,7 @@ $rows_total = mysqli_fetch_array($rs_valortotal);
                                         </div>
                                     </div>
                                 </form>  
-                                <?php if($rows_cotacao['status'] == "F" or $item <= 1){ 
+                                <?php if($item <= 1){ 
                                     
                                     }else{ ?>
                                 <div class="card-footer">

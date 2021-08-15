@@ -5,7 +5,7 @@ include("valida.php");
 <header class="header">
 	<div class="logo-container">
 		<a href="http://preview.oklerthemes.com/porto-admin/2.1.1" class="logo">
-			<img src="img/logo-refrigeracao.png" width="150" height="60" alt="BR RUBBER" /></a>
+			<img src="img/logo-refrigeracao.png" width="215" height="65" alt="BR RUBBER" /></a>
 		<div class="d-md-none toggle-menu" data-toggle="collapse" data-target=".tab-navigation">
 			<i class="fas fa-bars" aria-label="Toggle Menu"></i>
 		</div>
@@ -23,9 +23,9 @@ include("valida.php");
 						</div>
 					</form> -->
 
-		<span class="separator"></span>
+		<!-- <span class="separator"></span> -->
 
-		<ul class="notifications">
+		<!-- <ul class="notifications">
 			<li>
 				<a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
 					<i class="fas fa-tasks"></i>
@@ -184,9 +184,9 @@ include("valida.php");
 					</div>
 				</div>
 			</li>
-		</ul>
+		</ul> -->
 
-		<span class="separator"></span>
+		<!-- <span class="separator"></span> -->
 
 		<div id="userbox" class="userbox">
 			<a href="#" data-toggle="dropdown">
@@ -204,12 +204,12 @@ include("valida.php");
 			<div class="dropdown-menu">
 				<ul class="list-unstyled mb-2">
 					<li class="divider"></li>
-					<li>
+					<!-- <li>
 						<a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fas fa-user"></i> My Profile</a>
 					</li>
 					<li>
 						<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fas fa-lock"></i> Lock Screen</a>
-					</li>
+					</li> -->
 					<li>
 						<a role="menuitem" tabindex="-1" href="sair.php"><i class="fas fa-power-off"></i> Deslogar</a>
 					</li>
