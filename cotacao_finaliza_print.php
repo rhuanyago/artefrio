@@ -7,7 +7,7 @@ $idcotacao = $_GET['idcotacao'];
 $sql = "SELECT c.* from tbcotacao_precos c where c.idcotacao = '$idcotacao' order by item  ";
 $rs_itenscot = mysqli_query($conexao, $sql);
 
-$sql3 = "SELECT * FROM tbcotacao where idcotacao = '$idcotacao' ";
+$sql3 = "SELECT * from tbcotacao c, tbclientes a where a.reg = c.idcliente AND c.idcotacao = '$idcotacao'; ";
 $rs_cot = mysqli_query($conexao, $sql3);
 $rows_cot = mysqli_fetch_array($rs_cot);
 
@@ -34,7 +34,7 @@ $date = date('Y-m-d');
 
     <!-- Basic -->
     <meta charset="UTF-8">
-    <title>Cotação</title>
+    <title>Ordem de Serviço</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -43,7 +43,8 @@ $date = date('Y-m-d');
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!-- Web Fonts  -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light"
+        rel="stylesheet" type="text/css">
 
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
@@ -77,140 +78,217 @@ $date = date('Y-m-d');
 
     <!-- Head Libs -->
     <script src="vendor/modernizr/modernizr.js"></script>
+    
 
 </head>
 
-
+<style type="text/css">
+@media print {
+    .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+}
+</style>
 
 <body>
 
     <section class="body">
 
-            <section role="main" class="content-body">
+        <section role="main" class="content-body">
 
-                <!-- start: page -->
-                <div class="col-md-12">
-                    <section class="card">
-                        <div class="card-body">
-                            <div class="invoice mb-4">
-                                <header class="clearfix">
-                                    <div class="row">
-                                        <div class="col-sm-3 text-left mt-3 mb-3">
-                                                <img alt="Porto Website Template" src="img/logo4.png" height="120" >
-                                        </div>
-                                        <div class="col-sm-6 text-center mt-3 mb-3">
-                                            <div class="ib">
-                                                <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">M & M Comércio de Pneus Eireli EPP</h5>
-                                                <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">CNPJ: 02.966.816/0003-61</h6>
-                                                <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">RUA ANDORINHA-DO-RIO, N° 36 – ANEXO B</h6>
-                                                <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">PARQUE INDUSTRIAL III - CEP: 86706-695</h6>
-                                                <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">ARAPONGAS, PR</h6>
-                                                <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">UNIDADE REFORMADORA DE PNEUS REGISTRADA NO INMETRO SOB NÚMERO 007663/2016</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3 text-right mt-3 mb-3">
-                                                <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold"><?php echo date("d/m/Y") ?></h5>
-                                            <div class="ib">
-                                                m.mpneus@hotmail.com  
-                                            </div>
-                                            <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">(43) 3276-2609</h5>
+            <!-- start: page -->
+            <div class="col-md-12">
+                <section class="card">
+                    <div class="card-body">
+                        <div class="invoice mb-4">
+                            <header class="clearfix">
+                                <div class="row">
+                                    <div class="col-sm-3 text-left mt-3 mb-3">
+                                        <img alt="Porto Website Template" src="img/logo-refrigeracao.png" height="100" width="270">
+                                    </div>
+                                    <div class="col-sm-6 text-center mt-3 mb-3">
+                                        <div class="ib">
+                                            <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">Refrigeração Artfrio
+                                                - MEI</h5>
+                                            <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">CNPJ:
+                                                22.083.362/0001-26</h6>
+                                            <!-- <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">RUA
+                                                SUZANA PACHECO, N° 111</h6>
+                                            <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">VILA SOCIAL - CEP:
+                                                86804-490</h6> -->
+                                            <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">APUCARANA, PR</h6>
+                                            <h6 class="h6 mt-0 mb-1 text-dark font-weight-bold">REPARAÇÃO E
+                                                MANUTENÇÃO DE EQUIPAMENTOS ELETROELETRÔNICOS DE USO PESSOAL E
+                                                DOMÉSTICO</h6>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-8 mt-3 mb-3">
-                                            <h2 class="h3 mt-0 mb-1 text-dark font-weight-bold">COTAÇÃO DE PREÇOS</h2><br>
-                                            <h4 class="h4 m-0 text-dark font-weight-bold"><?php echo mb_strtoupper($rows_cot['favorecido']) ?> </h4>
+                                    <div class="col-sm-3 text-right mt-3 mb-3">
+                                        <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold"><?php echo date("d/m/Y") ?>
+                                        </h5>
+                                        <div class="ib">
+                                            assistencia.artfrio@gmail.com
                                         </div>
+                                        <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">(43) 3276-2609</h5>
                                     </div>
-                                </header>
-                                    <div class="bill-info">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                            </div>
-                                               
-                                            <div class="col-md-6">
-                                                <div class="bill-to text-right">
-                                                    <p class="mb-0">
-                                                        <p class="h3 mb-1 text-dark font-weight-semibold">Total: R$ <?php echo number_format($rows_total['total'],2,",","." ) ?> </p>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 mt-3 mb-3">
+                                        <h2 class="h3 mt-0 mb-1 text-dark font-weight-bold">ORDEM DE SERVIÇO -
+                                            <?php echo $idcotacao; ?></h2>
+                                        <br>
+                                        <h4 class="h5 m-0 text-dark font-weight-bold">Favorecido:
+                                            <?php echo mb_strtoupper($rows_cot['favorecido']) ?> </h4>
+                                        <h4 class="h5 m-0 text-dark font-weight-bold">Telefone:
+                                            <?php echo mb_strtoupper($rows_cot['telefone']) ?> </h4>
+                                        <h4 class="h5 m-0 text-dark font-weight-bold">Endereço:
+                                            <?php echo mb_strtoupper($rows_cot['endereco']) ?>
+                                        </h4>
+                                        <h4 class="h5 m-0 text-dark font-weight-bold">Bairro:
+                                            <?php echo mb_strtoupper($rows_cot['bairro']) ?> </h4>
+                                        <h4 class="h5 m-0 text-dark font-weight-bold">Cidade:
+                                            <?php echo mb_strtoupper($rows_cot['cidade']) ?></h4>
+                                        <h4 class="h5 m-0 text-dark font-weight-bold">Produto:
+                                            <?php echo mb_strtoupper($rows_cot['produto']) ?>
+                                        <h4 class="h5 m-0 text-dark font-weight-bold">Modelo:
+                                            <?php echo mb_strtoupper($rows_cot['modelo']) ?>
+                                    </div>
+                                    <div class="col-sm-6 mt-3 mb-3">
+                                        <br><br>
+                                        <h4 class="h5 mb-1 text-dark font-weight-bold">
+                                            <?php echo !empty($rows_cot['cpf']) ? 'CPF' : 'CNPJ' ?>
+                                            <?php echo mb_strtoupper((!empty($rows_cot['cpf'])) ? $rows_cot['cpf'] : $rows_cot['cnpj']) ?>
+                                        </h4>
+                                        <h4 class="h5 mt-4 text-dark font-weight-bold">Número:
+                                            <?php echo mb_strtoupper($rows_cot['numero']) ?> </h4>
+                                        <h4 class="h5 mt-4 text-dark font-weight-bold">UF:
+                                            <?php echo mb_strtoupper($rows_cot['uf']) ?> </h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 mt-3 mb-3">
+                                        <h4 class="h5 m-0 text-dark font-weight-bold">Defeito Reclamado:
+                                            <?php echo mb_strtoupper($rows_cot['defeito']) ?> </h4>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="bill-info">
+                                <div class="row">
+                                    <div class="col-md-6">
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <table class="table table-responsive-md invoice-items">
-                                            <thead>
-                                                <tr class="text-dark text-left" style="font-size:18px; width:100%;">
-                                                    <th class="d-none d-sm-table-cell text-left">Item</th>
-                                                    <th class="text-left ">Descrição</th>
-                                                    <th class="text-center d-none d-sm-table-cell">Unid</th>
-                                                    <th class="text-center">Qtde.</th>
-                                                    <th class="text-right">Valor Unitario</th>
-                                                    <th class="text-right">Valor Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php while ($rows_rsitens = mysqli_fetch_array($rs_itenscot)) { ?>
-                                                    <tr style="font-size:14px;">
-                                                        <td class="d-none d-sm-table-cell text-left" ><?php echo $rows_rsitens['item'] ?></td>
-                                                        <td class="text-left" style="width:40%;"><?php echo $rows_rsitens['descricao'] ?></td>
-                                                        <td class="text-center d-none d-sm-table-cell"><?php echo $rows_rsitens['tipo'] ?></td>
-                                                        <td class="text-center"><?php echo $rows_rsitens['quantidade'] ?></td>
-                                                        <td class="text-right">R$ <?php echo number_format($rows_rsitens['valor_unitario'],2,",","." ) ?></td>
-                                                        <td class="text-right">R$ <?php echo number_format($rows_rsitens['valor_total'],2, ",", "." ) ?></td>                                                  
-                                                    </tr>
-                                                <?php
+                                    <div class="col-md-6">
+                                        <div class="bill-to text-right">
+                                            <p class="mb-0">
+                                            <p class="h3 mb-1 text-dark font-weight-semibold">Total: R$
+                                                <?php echo number_format($rows_total['total'],2,",","." ) ?> </p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <table class="table table-responsive-md invoice-items">
+                                    <thead>
+                                        <tr class="text-dark text-left" style="font-size:18px; width:100%;">
+                                            <th class="text-left ">Descrição</th>
+                                            <th class="text-center">Qtde.</th>
+                                            <th class="text-right">Valor Unitario</th>
+                                            <th class="text-right">Valor Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php while ($rows_rsitens = mysqli_fetch_array($rs_itenscot)) { ?>
+                                        <tr style="font-size:14px;">
+                                            <td class="text-left" style="width:40%;">
+                                                <?php echo $rows_rsitens['descricao'] ?></td>
+                                            <td class="text-center"><?php echo $rows_rsitens['quantidade'] ?></td>
+                                            <td class="text-right">R$
+                                                <?php echo number_format($rows_rsitens['valor_unitario'],2,",","." ) ?>
+                                            </td>
+                                            <td class="text-right">R$
+                                                <?php echo number_format($rows_rsitens['valor_total'],2, ",", "." ) ?>
+                                            </td>
+                                        </tr>
+                                        <?php
                                                 } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="invoice-summary mb-4">
+                                <div class="row justify-content-end">
+                                    <div class="col-sm-9">
+                                        <table class="table h6 text-dark">
+                                            <tbody>
+                                                <tr class="b-top-0 mb-4">
+                                                    <td colspan="2"><b></b></td>
+                                                    <td class="text-right h5 text-dark font-weight-semibold"></td>
+                                                </tr>
+                                                <br>
+                                                <tr class="h4">
+                                                    <td colspan="2"><b>Valor Total</b></td>
+                                                    <td class="text-right"><b
+                                                            class="h3 text-dark font-weight-semibold">R$
+                                                            <?php echo number_format($rows_total['total'],2,",","." ) ?></b>
+                                                    </td>
+                                                </tr>
+                                                <tr class="h4 ">
+                                                    <td colspan="2"><b>Garantia</b></td>
+                                                    <td class="text-right"><b
+                                                            class="h3 text-dark font-weight-semibold">90 dias</b>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
-
-                                    <div class="invoice-summary mb-4">
-                                        <div class="row justify-content-end">
-                                            <div class="col-sm-9">
-                                                <table class="table h6 text-dark">
-                                                    <tbody>
-                                                        <tr class="b-top-0 mb-4">
-                                                            <td colspan="2"><b></b></td>
-                                                            <td class="text-right h5 text-dark font-weight-semibold"></td>
-                                                        </tr>
-                                                        <br>
-                                                        <tr class="h4">
-                                                            <td colspan="2"><b>Valor Total</b></td>
-                                                            <td class="text-right"><b class="h3 text-dark font-weight-semibold">R$ <?php echo number_format($rows_total['total'],2,",","." ) ?></b></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+                            <!-- <hr> -->
+                            <div class="row pagebreak">
+                                <div class="col-sm-12 text-center mt-3 mb-3">
+                                    <div class="ib ">
+                                        <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">
+                                           Obs: Garantia somente do Serviço
+                                        </h5>
+                                        <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">
+                                            Após feito orçamento, caso não venha fazer o serviço, o equipamento será devolvido.
+                                        </h5>
                                     </div>
-                                    <br><br><br><br><br><br><br><br>
-                                    <div class="row">
-                                        <div class="col-sm-12 text-center mt-3 mb-3">
-                                            <div class="ib">
-                                                <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold"><?php echo utf8_encode(strftime("Arapongas, %d de %B de %Y", strtotime(ucfirst($date)))); ?></h5>
-                                            </div>
-                                        </div>
-                                    </div><br><br>
-                                    <div class="row">
-                                        <div class="col-sm-12 text-center mt-3 mb-3">
-                                            <div class="ib">
-                                                <p>_______________________________________________________________________________</p>
-                                                <h4 class="h4 mt-0 mb-1 text-dark font-weight-bold">M & M Comércio de Pneus Eireli EPP</h4>
-                                                <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">CNPJ N°: 02.966.816/0003-61</h5>
-                                                <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">Proprietário: Wallinson de Melo</h5>
-                                                <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">RG Nº 9.069.053-1 SSP-PR</h5>
-                                                <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">CPF Nº 006.981.079-69</h5>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-12 text-center mt-3 mb-3">
+                                    <div class="ib">
+                                        <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">
+                                            <?php echo utf8_encode(strftime("Apucarana, %d de %B de %Y", strtotime(ucfirst($date)))); ?>
+                                        </h5>
                                     </div>
+                                </div>
+                            </div><br><br>
+                            <div class="row ">
+                                <div class="col-sm-12 text-center mt-3 mb-3">
+                                    <div class="ib">
+                                        <p>_______________________________________________________________________________
+                                        </p>
+                                        <h4 class="h4 mt-0 mb-1 text-dark font-weight-bold">Refrigeração Artfrio
+                                            - MEI</h4>
+                                        <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">CNPJ:
+                                            22.083.362/0001-26
+                                        </h5>
+                                        <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">Proprietário: Giomar Belino
+                                            Argentao</h5>
+                                        <!-- <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">RG Nº 9.069.053-1 SSP-PR
+                                        </h5>
+                                        <h5 class="h5 mt-0 mb-1 text-dark font-weight-bold">CPF Nº 006.981.079-69</h5> -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
                 <!-- end: page -->
-                </div>
-            </section>
+            </div>
+        </section>
     </section>
     </div>
     </div>
@@ -271,11 +349,11 @@ $date = date('Y-m-d');
     <script src="js/theme.init.js"></script>
     <!-- Analytics to Track Preview Website -->
     <script>
-        $(function(){
+    $(function() {
         window.print();
-        });
+    });
     </script>
-    
+
 </body>
 
 <!-- Mirrored from preview.oklerthemes.com/porto-admin/2.1.1/pages-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Jun 2018 18:56:35 GMT -->

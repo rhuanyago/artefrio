@@ -5,7 +5,7 @@ include("Connections/conexao.php");
 $idcotacao = $_GET['idcotacao'];
 
 
-$sql = "SELECT * from tbcotacao c where c.idcotacao = '$idcotacao' ";
+$sql = "SELECT * from tbcotacao c, tbclientes a where a.reg = c.idcliente AND c.idcotacao = '$idcotacao'; ";
 $rs_cot = mysqli_query($conexao, $sql);
 $rows_cotacao = mysqli_fetch_array($rs_cot);
 
@@ -27,7 +27,7 @@ $rows_total = mysqli_fetch_array($rs_valortotal);
 
     <!-- Basic -->
     <meta charset="UTF-8">
-    <title>Cotação Produtos</title>
+    <title>Ordem de Serviço</title>
     <meta name="keywords" content="BR Rubber" />
     <meta name="description" content="Brasil Recapagem">
     <meta name="author" content="">
@@ -94,8 +94,8 @@ $rows_total = mysqli_fetch_array($rs_valortotal);
                                     <i class="fas fa-home"></i>
                                 </a>
                             </li>
-                            <li><span>Cotações</span></li>
-                            <li><span>Adicionar Produto</span></li>
+                            <li><span>Ordem de Serviço</span></li>
+                            <li><span>Adicionar Itens</span></li>
                         </ol>
 
 
@@ -107,7 +107,7 @@ $rows_total = mysqli_fetch_array($rs_valortotal);
                     <div class="col-md-12 order-1 mb-4">
                         <section class="card card-default">
                             <header class="card-header">
-                                <h2 class="card-title">Produtos / Cotação - <?php echo $idcotacao ?></h2>
+                                <h2 class="card-title">ORDEM DE SERVIÇO - <?php echo $idcotacao ?></h2>
                             </header>
                             <div class="card-body">
                                 <div id="foo" data-appear-animation="fadeOut" data-appear-animation-delay="4000">
@@ -158,22 +158,22 @@ $rows_total = mysqli_fetch_array($rs_valortotal);
                                     <div class="row">
                                         <div class="col-sm-1">
                                             <div class="form-group">
-                                                <label class="control-label  text-weight-bold">Orçamento</label>
+                                                <label class="control-label  text-weight-bold">OS</label>
                                                 <input type="text" name="orcamento" value="<?php echo $idcotacao ?>" class="form-control" readonly />
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <div class="form-group">
                                                 <label class="control-label  text-weight-bold">Favorecido</label>
                                                     <input type="text" name="tipo" value="<?php echo mb_strtoupper($rows_cotacao['favorecido']) ?>" class="form-control" readonly />
 
                                             </div>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label class="control-label  text-weight-bold">Tipo</label>
                                                     <?php if($rows_cotacao['tipo'] == "L"){
-                                                        $rows_cotacao['tipo'] = "LICITAÇÃO";
+                                                        $rows_cotacao['tipo'] = "ORDEM DE SERVIÇO";
                                                     }elseif($rows_cotacao['tipo'] == "CT"){
                                                         $rows_cotacao['tipo'] = "COTAÇÃO";
                                                     }  ?>
@@ -182,6 +182,38 @@ $rows_total = mysqli_fetch_array($rs_valortotal);
                                             </div>
                                         </div>
                                     </div> <!-- fim row-->
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label  text-weight-bold">Produto</label>
+                                                    <input type="text" name="produto" value="<?php echo mb_strtoupper($rows_cotacao['produto']) ?>" class="form-control" readonly />
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label  text-weight-bold">Modelo</label>
+                                                    <input type="text" name="modelo" value="<?php echo mb_strtoupper($rows_cotacao['modelo']) ?>" class="form-control" readonly />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label  text-weight-bold">Cliente</label>
+                                                <input type="text" name="defeito" value="<?php echo $rows_cotacao['favorecido'] ?>" class="form-control"  readonly/>
+                                            </div>  
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-group">
+                                                <label class="control-label  text-weight-bold">Defeito Reclamado</label>
+                                                <textarea type="text" name="defeito" id="defeito" rows="4" cols="100" class="form-control" required readonly><?php echo $rows_cotacao['defeito'] ?></textarea>
+                                            </div>  
+                                        </div>
+                                    </div>
 
                                      
                                     <div class="row">
@@ -243,9 +275,9 @@ $rows_total = mysqli_fetch_array($rs_valortotal);
                                                                         <td class="text-center" style="width:15%;"><input type="text" name="valor_unitario" id="valor_unitario<?php echo $item; ?>"  onkeyup="valorreais(this)"  inputmode="numeric" class="form-control text-center" value=""></td>
                                                                         <?php } ?>
                                                                         <?php if(isset($rows_itenscot['valor_total'])){ ?>
-                                                                        <td class="text-center" style="width:15%;"><input type="text" name="preco_total" id="preco_total<?php echo $item; ?>" value="<?php echo number_format($rows_itenscot['valor_total'],2, ",", "." ) ?>" inputmode="numeric" class="form-control text-center" ></td>
+                                                                        <td class="text-center" style="width:15%;"><input type="text" name="preco_total" id="preco_total<?php echo $item; ?>" value="<?php echo number_format($rows_itenscot['valor_total'],2, ",", "." ) ?>" inputmode="numeric" class="form-control text-center" readonly></td>
                                                                         <?php }else{ ?>
-                                                                        <td class="text-center" style="width:15%;"><input type="text" name="preco_total" id="preco_total<?php echo $item; ?>" value="" inputmode="numeric" class="form-control text-center" ></td>
+                                                                        <td class="text-center" style="width:15%;"><input type="text" name="preco_total" id="preco_total<?php echo $item; ?>" value="" inputmode="numeric" class="form-control text-center" readonly></td>
                                                                         <?php } ?>
                                                                         <?php if($rows_cotacao['status'] == "F"){ }elseif(isset($rows_itenscot['id'])){ ?>     
                                                                         <td class="actions-hover actions-fade text-center">
@@ -322,7 +354,7 @@ $rows_total = mysqli_fetch_array($rs_valortotal);
                                     }else{ ?>
                                 <div class="card-footer">
                                     <br>
-                                        <a href="cotacao_licitacao_finaliza_update.php?idcotacao=<?php echo $idcotacao ?>" class="btn btn-success float-right text-weight-bold text-white" style="border:none;">Finalizar Cotação <i class="fas fa-check-circle"></i></a>
+                                        <a href="cotacao_licitacao_finaliza_update.php?idcotacao=<?php echo $idcotacao ?>" class="btn btn-success float-right text-weight-bold text-white" style="border:none;">Finalizar OS <i class="fas fa-check-circle"></i></a>
                                     <br>
                                 </div>
                                 <?php } ?>

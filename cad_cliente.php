@@ -65,6 +65,9 @@ include("Connections/conexao.php");
         .listin {
             padding: 12px;
         }
+        .oculto{
+            display:none;		
+        }
     </style>
 
 </head>
@@ -179,7 +182,7 @@ include("Connections/conexao.php");
                                         </div>
                                     </div>     
 
-                                    <div class="form-group row">
+                                    <div class="form-group row oculto">
                                         <label class="col-lg-3 control-label text-lg-right pt-2">ISS</label>
                                         <div class="col-lg-3">
                                             <div class="input-group">
@@ -238,7 +241,7 @@ include("Connections/conexao.php");
                                         </div>
                                     </div>
 
-                                    <div class="form-group row campoPessoaFisica">
+                                    <div class="form-group row  oculto">
                                         <label class="col-lg-3 control-label text-lg-right pt-2">Apelido</label>
                                         <div class="col-lg-6">
                                             <div class="input-group">
@@ -266,7 +269,7 @@ include("Connections/conexao.php");
                                         </div>
                                     </div>
 
-                                    <div class="form-group row campoPessoaFisica">
+                                    <div class="form-group row oculto">
                                         <label class="col-lg-3 control-label text-lg-right pt-2">RG</label>
                                         <div class="col-lg-6">
                                             <input type="text" name="rg" inputmode="numeric" maxlength="20" autocomplete="off" class="form-control" >
@@ -388,7 +391,7 @@ include("Connections/conexao.php");
                                     <label class="col-lg-3 control-label text-lg-right pt-2 ">Complemento</label>
                                         <div class="col-lg-6">
                                             <div class="input-group">
-                                                <input type="text" name="complemento" id="complemento" autocomplete="off" class="form-control" required="required">
+                                                <input type="text" name="complemento" id="complemento" autocomplete="off" class="form-control">
                                             </div>
                                         </div>
                                     </div>

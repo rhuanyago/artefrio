@@ -9,7 +9,7 @@ if (isset($_POST["nome"])) {
 	$query = "SELECT c.*, date_format(c.data_vencimento, '%d/%m/%Y') AS dt_vencimento, date_format(c.ultimo_dia, '%d/%m/%Y') AS dt_ultimodia, DATEDIFF (now(), data_vencimento ) AS quantidade_dias FROM tbpagamento_dia c WHERE favorecido like '".$favorecido."%' order by c.favorecido, c.parcelas asc";
 }
 else {
-	$query = "SELECT c.*, date_format(c.data_vencimento, '%d/%m/%Y') AS dt_vencimento, date_format(c.ultimo_dia, '%d/%m/%Y') AS dt_ultimodia, DATEDIFF (now(), data_vencimento ) AS quantidade_dias FROM tbpagamento_dia c WHERE (MONTH(data_vencimento) = MONTH(NOW())) AND c.status = 'A' order by c.favorecido, c.parcelas asc";
+	$query = "SELECT c.*, date_format(c.data_vencimento, '%d/%m/%Y') AS dt_vencimento, date_format(c.ultimo_dia, '%d/%m/%Y') AS dt_ultimodia, DATEDIFF (now(), data_vencimento ) AS quantidade_dias FROM tbpagamento_dia c WHERE c.status = 'A' order by c.favorecido, c.parcelas asc;";
 }
 
 $rscli = mysqli_query($conexao, $query);

@@ -2,7 +2,7 @@
 session_start();
 include("Connections/conexao.php");
 
-$query = "select ifnull(max((idcotacao)+1),0) ultimo from tbcotacao c;";
+$query = "select ifnull(max((idcotacao)+1),1) ultimo from tbcotacao c;";
 
 $result2 = mysqli_query($conexao, $query);
 $resultado = mysqli_fetch_array($result2);
@@ -13,7 +13,8 @@ $idcotacao = $_SESSION['idcotacao'];
 
 ?>
 <!doctype html>
-<html class="has-tab-navigation header-dark boxed" data-style-switcher-options="{'headerColor': 'dark', 'backgroundColor': 'dark', 'headerColor': 'dark', 'changeLogo': false, 'layoutStyle': 'boxed'}">
+<html class="has-tab-navigation header-dark boxed"
+    data-style-switcher-options="{'headerColor': 'dark', 'backgroundColor': 'dark', 'headerColor': 'dark', 'changeLogo': false, 'layoutStyle': 'boxed'}">
 
 <!-- Mirrored from preview.oklerthemes.com/porto-admin/2.1.1/pages-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Jun 2018 18:56:35 GMT -->
 
@@ -30,7 +31,8 @@ $idcotacao = $_SESSION['idcotacao'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!-- Web Fonts  -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light"
+        rel="stylesheet" type="text/css">
 
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
@@ -56,15 +58,15 @@ $idcotacao = $_SESSION['idcotacao'];
     <link rel="stylesheet" href="vendor/codemirror/theme/monokai.css" />
 
     <style>
-        .rhu {
-            background-color: #eee;
-            color: black;
-            cursor: pointer;
-        }
+    .rhu {
+        background-color: #eee;
+        color: black;
+        cursor: pointer;
+    }
 
-        .listin {
-            padding: 12px;
-        }
+    .listin {
+        padding: 12px;
+    }
     </style>
 
     <!-- Theme CSS -->
@@ -103,8 +105,8 @@ $idcotacao = $_SESSION['idcotacao'];
                                     <i class="fas fa-home"></i>
                                 </a>
                             </li>
-                            <li><span>Nova Cotação</span></li>
-                            <li><span>Adicionar Cotação</span></li>
+                            <li><span>Nova OS</span></li>
+                            <li><span>Adicionar OS</span></li>
                         </ol>
 
 
@@ -116,73 +118,105 @@ $idcotacao = $_SESSION['idcotacao'];
                     <div class="col-md-12">
                         <section class="card card-default">
                             <header class="card-header">
-                                <h2 class="card-title">Nova Cotação</h2>
+                                <h2 class="card-title">Nova OS</h2>
                             </header>
                             <div class="card-body">
                                 <form method="POST" action="cotacao_insert.php">
-                                     <div id="foo" data-appear-animation="fadeOut" data-appear-animation-delay="4000">
-                                            <div class="col-lg-12">
-                                                <div class="center" >
-                                                    <?php
+                                    <input type="hidden" name="idcliente" id="idcliente" value ="" class="form-control" autocomplete="off" readonly required >
+
+                                    <div id="foo" data-appear-animation="fadeOut" data-appear-animation-delay="4000">
+                                        <div class="col-lg-12">
+                                            <div class="center">
+                                                <?php
                                                     if (isset($_SESSION['cotacao_escolhe'])) :
                                                     ?>
-                                                        <div class="alert alert-danger">
-                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                            <strong>Atenção! <?php echo $_SESSION['cotacao_escolhe'] ?> </strong><br>
-                                                        </div>
-                                                    <?php
+                                                <div class="alert alert-danger">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-hidden="true">×</button>
+                                                    <strong>Atenção! <?php echo $_SESSION['cotacao_escolhe'] ?>
+                                                    </strong><br>
+                                                </div>
+                                                <?php
                                                     endif;
                                                     unset($_SESSION['cotacao_escolhe']);
                                                     ?>
-                                                </div>
                                             </div>
-                                            <div class="col-lg-12">
-                                                <div class="center">
-                                                    <?php
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="center">
+                                                <?php
                                                     if (isset($_SESSION['msg_erro_cotacao'])) :
                                                     ?>
-                                                        <div class="alert alert-danger">
-                                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                            <strong>Atenção! <?php echo $_SESSION['msg_erro_cotacao'] ?></strong>
-                                                        </div>
-                                                    <?php
+                                                <div class="alert alert-danger">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-hidden="true">×</button>
+                                                    <strong>Atenção!
+                                                        <?php echo $_SESSION['msg_erro_cotacao'] ?></strong>
+                                                </div>
+                                                <?php
                                                     endif;
                                                     unset($_SESSION['msg_erro_cotacao']);
                                                     ?>
-                                                </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="row">
+                                    <div class="row">
+
                                         <div class="col-sm-1">
-                                            <label class="control-label  text-weight-bold">ID</label>
+                                            <label class="control-label  text-weight-bold">OS</label>
                                             <div class="input-group">
-                                                <input type="text" name="idcotacao" value ="<?php echo $idcotacao ?>" class="form-control" autocomplete="off" readonly required >
+                                                <input type="text" name="idcotacao" value="<?php echo $idcotacao ?>"
+                                                    class="form-control" autocomplete="off" readonly required>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <label class="control-label  text-weight-bold">Favorecido</label>
+                                            <label class="control-label  text-weight-bold">Nome</label>
                                             <div class="input-group">
-                                                <input type="text" name="favorecido"  class="form-control" autocomplete="off" autofocus required >
+                                                <input type="text" name="favorecido" id="favorecido"
+                                                    class="form-control" autocomplete="off"  required>
                                             </div>
                                             <div id="countryList"></div>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label class="control-label  text-weight-bold">Tipo</label>
-                                                    <select name="tipo" id="tipo" class="form-control">
+                                                <select name="tipo" id="tipo" class="form-control">
                                                     <option value="ND">---- ESCOLHA ----</option>
-                                                        <option value="CT">COTAÇÃO</option>
-                                                        <option value="L">LICITAÇÃO</option>
-                                                    </select>
+                                                    <!-- <option value="CT">COTAÇÃO</option> -->
+                                                    <option value="L" selected>ORDEM DE SERVIÇO</option>
+                                                </select>
                                             </div>
+                                        </div>
+                                         <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label  text-weight-bold">Produto</label>
+                                                <input type="text" name="produto" id="produto"
+                                                    class="form-control" autocomplete="off"  required>
+                                            </div>
+                                        </div>
+                                         <div class="col-sm-2">
+                                            <div class="form-group">
+                                                <label class="control-label  text-weight-bold">Modelo</label>
+                                                <input type="text" name="modelo" id="modelo"
+                                                    class="form-control" autocomplete="off"  required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label  text-weight-bold">Defeito Reclamado</label>
+                                                <textarea type="text" name="defeito" id="defeito" rows="4" cols="100" class="form-control" required ></textarea>
+                                            </div>  
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-2">
                                             <div class="form-group">
                                                 <label class="control-label  text-weight-bold">Incluir</label>
-                                                <input id="Submit1" class="btn btn-dark btn-block" type="submit" value="Nova Cotação" />
+                                                <input id="Submit1" class="btn btn-dark btn-block" type="submit"
+                                                    value="Nova Cotação" />
                                             </div>
                                         </div>
                                     </div>
@@ -193,8 +227,8 @@ $idcotacao = $_SESSION['idcotacao'];
                     </div>
                 </div>
 
-                
-                
+
+
             </section>
         </div>
         </div>
@@ -254,105 +288,105 @@ $idcotacao = $_SESSION['idcotacao'];
 
 
     <script>
-        function myFunction() {
-            var x = document.getElementById("referencia");
-            x.value = x.value.toUpperCase();
-        }
+    function myFunction() {
+        var x = document.getElementById("referencia");
+        x.value = x.value.toUpperCase();
+    }
     </script>
 
     <script type='text/javascript'>
-        $(document).ready(function() {
-            $("input[name='nome_cli']").blur(function() {
-                var $nome_cli = $("input[name='nome_cli']");
-                var $cidade = $("input[name='cidade']");
-                var $idcliente = $("input[name='idcliente']")
-                $.getJSON('pega_cli2.php', {
-                    nome: $(this).val()
-                }, function(json) {
-                    $nome_cli.val(json.nome_cli);
-                    $cidade.val(json.cidade);
-                    $idcliente.val(json.idcliente);
-                });
+    $(document).ready(function() {
+        $("input[name='favorecido']").blur(function() {
+            var $nome_cli = $("input[name='favorecido']");
+            var $cidade = $("input[name='cidade']");
+            var $idcliente = $("input[name='idcliente']");
+            $.getJSON('pega_cli2.php', {
+                nome: $(this).val()
+            }, function(json) {
+                $nome_cli.val(json.nome_cli);
+                $cidade.val(json.cidade);
+                $idcliente.val(json.idcliente);
             });
         });
+    });
     </script>
 
     <script type="text/javascript">
-        function buscarRg(nome) {
-            $.ajax({
-                url: "pesquisa_cliente.php",
-                method: "POST",
-                data: {
-                    nome: nome
-                },
-                success: function(data) {
-                    $('#resultado').html(data);
-                }
-            });
-        }
+    // function buscarRg(nome) {
+    //     $.ajax({
+    //         url: "pesquisa_cliente.php",
+    //         method: "POST",
+    //         data: {
+    //             nome: nome
+    //         },
+    //         success: function(data) {
+    //             $('#resultado').html(data);
+    //         }
+    //     });
+    // }
 
 
-        $(document).ready(function() {
-            buscarRg();
-            $('#rg').keyup(function() {
-                var rg = $(this).val();
-                if (rg != '') {
-                    buscarRg(rg);
-                } else {
-                    buscarRg();
-                }
-            });
-        });
+    // $(document).ready(function() {
+    //     buscarRg();
+    //     $('#rg').keyup(function() {
+    //         var rg = $(this).val();
+    //         if (rg != '') {
+    //             buscarRg(rg);
+    //         } else {
+    //             buscarRg();
+    //         }
+    //     });
+    // });
     </script>
 
     <script>
-        function ativa() {
-            var div = document.getElementById('div')
-            /* se conteúdo está escondido, mostra e troca o valor do botão para: esconde */
-            if (div.style.display == 'none') {
-                document.getElementById("botao").value = 'esconde'
-                div.style.display = 'block'
-            } else {
-                /* se conteúdo está a mostra, esconde o conteúdo e troca o valor do botão para: mostra */
-                div.style.display = 'none'
-                document.getElementById("botao").value = 'mostra'
+    function ativa() {
+        var div = document.getElementById('div')
+        /* se conteúdo está escondido, mostra e troca o valor do botão para: esconde */
+        if (div.style.display == 'none') {
+            document.getElementById("botao").value = 'esconde'
+            div.style.display = 'block'
+        } else {
+            /* se conteúdo está a mostra, esconde o conteúdo e troca o valor do botão para: mostra */
+            div.style.display = 'none'
+            document.getElementById("botao").value = 'mostra'
+        }
+    }
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $('#favorecido').keyup(function() {
+            var nome = $(this).val();
+            if (nome != '') {
+                $.ajax({
+                    url: "complete.php",
+                    method: "POST",
+                    data: {
+                        nome: nome
+                    },
+                    success: function(data) {
+                        $('#countryList').fadeIn();
+                        $('#countryList').html(data);
+                    }
+                });
             }
-        }
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#nome_cli').keyup(function() {
-                var nome = $(this).val();
-                if (nome != '') {
-                    $.ajax({
-                        url: "complete.php",
-                        method: "POST",
-                        data: {
-                            nome: nome
-                        },
-                        success: function(data) {
-                            $('#countryList').fadeIn();
-                            $('#countryList').html(data);
-                        }
-                    });
-                }
-            });
-            $(document).on('click', 'li', function() {
-                $('#nome_cli').val($(this).text());
-                $('#countryList').fadeOut();
-                $('#nome_cli').focus();
-            });
         });
+        $(document).on('click', 'li', function() {
+            $('#favorecido').val($(this).text());
+            $('#countryList').fadeOut();
+            $('#favorecido').focus();
+        });
+    });
     </script>
 
     <script>
-        // Iniciará quando todo o corpo do documento HTML estiver pronto.
-            $().ready(function() {
-                setTimeout(function () {
-                    $('#foo').hide(); // "foo" é o id do elemento que seja manipular.
-                }, 7500); // O valor é representado em milisegundos.
-            });
+    // Iniciará quando todo o corpo do documento HTML estiver pronto.
+    $().ready(function() {
+        setTimeout(function() {
+            $('#foo').hide(); // "foo" é o id do elemento que seja manipular.
+        }, 7500); // O valor é representado em milisegundos.
+    });
     </script>
 </body>
 

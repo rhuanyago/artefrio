@@ -85,11 +85,11 @@ $finalizadas = mysqli_query($conexao, $sql2);
 
                     </div>
 
-                    <h2>Cotações em Aberto</h2>
+                    <h2>Ordens de Serviço em Aberto</h2>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="col">
-                                <a class="btn btn-success text-white mb-2" href="nova_cotacao.php" style="border:none;"><i class="fas fa-plus"></i> Nova Cotação</a>
+                                <a class="btn btn-success text-white mb-2" href="nova_cotacao.php" style="border:none;"><i class="fas fa-plus"></i> Nova OS</a>
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@ $finalizadas = mysqli_query($conexao, $sql2);
                                     <div class="tab-content">
                                         <div id="aberto" class="tab-pane active">
                                         <header class="card-header card-header-primary">
-                                            <h2 class="card-title">Últimas Cotações</h2>
+                                            <h2 class="card-title">Últimas OS</h2>
                                         </header>
                                         <div class="card-body">
                                             <div id="foo" data-appear-animation="fadeOut" data-appear-animation-delay="4000">
@@ -151,7 +151,7 @@ $finalizadas = mysqli_query($conexao, $sql2);
                                                 <table class="table table-responsive-md table-striped mb-0">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID Cotação</th>
+                                                            <th>OS</th>
                                                             <th>Favorecido</th>
                                                             <th>Status</th>
                                                             <th>Tipo</th>
@@ -176,7 +176,7 @@ $finalizadas = mysqli_query($conexao, $sql2);
                                                                     <?php if ($rows_rspedidos['tipo'] == 'CT') { ?>
                                                                         COTAÇÃO
                                                                     <?php }elseif($rows_rspedidos['tipo'] == 'L'){ ?>
-                                                                        LICITAÇÃO
+                                                                        OS
                                                                     <?php } ?>
                                                                 </td>
                                                                 <td><?php echo $rows_rspedidos['data'] ?></td>

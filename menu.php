@@ -17,7 +17,7 @@ include("valida.php");
 					<li>
 						<a class="nav-link" href="cad_cliente.php">Clientes</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a class="nav-link" href="cad_funcionario.php">Funcionários</a>
 					</li>
 					<li class="dropdown-submenu">
@@ -34,11 +34,11 @@ include("valida.php");
 								</a>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 					<li>
 						<a class="nav-link" href="cad_usuario.php">Usuários</a>
 					</li>
-					<li class="dropdown-submenu">
+					<!-- <li class="dropdown-submenu">
 						<a class="nav-link dropdown-toggle" href="cad_categoria.php">Produtos</a>
 						<ul class="dropdown-menu">
 							<li>
@@ -48,7 +48,7 @@ include("valida.php");
 								<a class="nav-link" href="cad_categoria.php">Categoria</a>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 
 
 				</ul>
@@ -56,9 +56,9 @@ include("valida.php");
 			<li class="dropdown">
 				<a class="nav-link dropdown-toggle"><i class="fas fa-dollar-sign" aria-hidden="true"></i></i>Financeiro</a>
 				<ul class="dropdown-menu">
-					<li>
+					<!-- <li>
 						<a class="nav-link" href="caixa.php">Caixa</a>
-					</li>
+					</li> -->
 					<li>
 						<a class="nav-link" href="pagamento_dia.php">Pagamentos</a>
 					</li>
@@ -72,7 +72,7 @@ include("valida.php");
 			<li class="dropdown">
 				<a class="nav-link dropdown-toggle"><i class="fas fa-tasks" aria-hidden="true"></i>Orçamentos</a>
 				<ul class="dropdown-menu">
-					<li class="dropdown-submenu">
+					<!-- <li class="dropdown-submenu">
 						<a class="nav-link dropdown-toggle">Pedidos</a>
 						<ul class="dropdown-menu">
 							<li>
@@ -108,13 +108,13 @@ include("valida.php");
 								</ul>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 					<li class="dropdown-submenu">
 						<a class="nav-link dropdown-toggle">Cotação</a>
 						<ul class="dropdown-menu">
 							<li>
 								<a class="nav-link" href="cotacoes.php">
-									Cotações
+									Ordem de Serviço
 								</a>
 							</li>
 						</ul>

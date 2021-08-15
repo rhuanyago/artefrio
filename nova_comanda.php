@@ -298,31 +298,31 @@ session_start();
     </script>
 
     <script type="text/javascript">
-        function buscarRg(nome) {
-            $.ajax({
-                url: "pesquisa_cliente.php",
-                method: "POST",
-                data: {
-                    nome: nome
-                },
-                success: function(data) {
-                    $('#resultado').html(data);
-                }
-            });
-        }
+        // function buscarRg(nome) {
+        //     $.ajax({
+        //         url: "pesquisa_cliente.php",
+        //         method: "POST",
+        //         data: {
+        //             nome: nome
+        //         },
+        //         success: function(data) {
+        //             $('#resultado').html(data);
+        //         }
+        //     });
+        // }
 
 
-        $(document).ready(function() {
-            buscarRg();
-            $('#rg').keyup(function() {
-                var rg = $(this).val();
-                if (rg != '') {
-                    buscarRg(rg);
-                } else {
-                    buscarRg();
-                }
-            });
-        });
+        // $(document).ready(function() {
+        //     buscarRg();
+        //     $('#rg').keyup(function() {
+        //         var rg = $(this).val();
+        //         if (rg != '') {
+        //             buscarRg(rg);
+        //         } else {
+        //             buscarRg();
+        //         }
+        //     });
+        // });
     </script>
 
     <script>
